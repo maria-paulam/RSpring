@@ -1,0 +1,54 @@
+.container2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    padding: 1rem;
+    
+
+    background-image: url('./img/5-Fondo\ seccion\ 2-\ nuestros\ servicios.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+
+.service-box {
+    background-color: #fff;
+    border-radius: 6px; 
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1); 
+    padding: 1rem; 
+    text-align: center;
+    width: 250px;
+    
+}
+
+.service-icon {
+    margin-bottom: 0.75rem; 
+}
+
+.service-icon img {
+    max-width: 48px; 
+}
+
+.service-title {
+    font-size: 1rem; 
+    font-weight: bold;
+    margin-bottom: 0.25rem; 
+}
+
+.service-description {
+    color: #555;
+    font-size: 0.875rem; 
+    margin-bottom: 0.75rem; 
+}
+
+
+.tituloNS{
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    grid-column: 1 / -1;
+    margin-top: 60px;
+}
