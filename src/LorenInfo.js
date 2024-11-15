@@ -10,11 +10,11 @@ const LoremInfo = () => {
     <div 
       className="container"
       style={{ 
-        backgroundImage: `url(${imagenF})`, // Establece la imagen de fondo
-        backgroundSize: 'cover',  // Asegura que la imagen cubra todo el área
-        backgroundPosition: 'center',  // Centra la imagen
-        backgroundRepeat: 'no-repeat',  // Evita que la imagen se repita
-        height: '100vh'  // La altura será de toda la ventana
+        backgroundImage: `url(${imagenF})`, 
+        backgroundSize: 'cover',  
+        backgroundPosition: 'center', 
+        backgroundRepeat: 'no-repeat',  
+        height: '100vh'  
       }}
     >
       <div className="content">

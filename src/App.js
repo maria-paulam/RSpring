@@ -9,6 +9,7 @@ function App() {
       <Header />
       <Nservicios/>
       <LoremInfo/>
+      {/* tarjetas */}
       <Tarjetas/>
       
 
