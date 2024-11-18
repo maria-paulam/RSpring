@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './NuestrosServicios.css'; 
 import { LoremIpsum } from 'lorem-ipsum';
 import { useSpring, animated } from '@react-spring/web'; 
@@ -7,40 +7,49 @@ import imagenFondo from './img/1-pagina-principal-Navesoft-marca-registrada-Nave
 const lorem = new LoremIpsum();
 
 const Nservicios = () => {
-  // Animaciones para el texto y el botón
-  const titleAnimation = useSpring({
-    from: { opacity: 0, transform: 'translateY(-20px)' },
-    to: { opacity: 1, transform: 'translateY(0)' },
-    config: { duration: 1000 }, // Duración de 1 segundo
-  });
+  // Estado para manejar la visibilidad
+  const [isVisible, setIsVisible] = useState(true);
 
-  const buttonAnimation = useSpring({
-    from: { opacity: 0, transform: 'scale(0.8)' },
-    to: { opacity: 1, transform: 'scale(1)' },
-    delay: 500, // Retardo de 500ms
+  // Detectar el scroll y actualizar la visibilidad
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+      setIsVisible(currentScroll < 100); // Mostrar si el scroll es menor a 100px
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Animaciones dinámicas basadas en el estado de visibilidad
+  const visibilityAnimation = useSpring({
+    opacity: isVisible ? 1 : 0, // Cambia la opacidad
+    transform: isVisible ? 'translateY(0)' : 'translateY(-20px)', // Mueve hacia arriba al ocultar
+    config: { tension: 200, friction: 20 },
   });
 
   return (
-    <div
+    <animated.div
       className="header-container"
-      style={{ backgroundImage: `url(${imagenFondo})` }}
+      style={{
+        ...visibilityAnimation,
+        backgroundImage: `url(${imagenFondo})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
-      {/* Animación del título */}
-      <animated.h1 className="header-title" style={titleAnimation}>
-        Nuestros Servicios de 
-      </animated.h1>
-      <animated.h1 className="header-title" style={titleAnimation}>
-        Software as a Service
-      </animated.h1>
+      
+      <h1 className="header-title">Nuestros Servicios de</h1>
+      <h1 className="header-title">Software as a Service</h1>
 
-      {/* Texto estático */}
+      
       <p>{lorem.generateWords(30)}</p>
 
-      {/* Animación del botón */}
-      <animated.button className="mi-boton" style={buttonAnimation}>
-        Haz Clic Aquí
-      </animated.button>
-    </div>
+     
+      <button className="mi-boton">Haz Clic Aquí</button>
+    </animated.div>
   );
 };
 
